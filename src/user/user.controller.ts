@@ -9,7 +9,7 @@ export class UserController {
   @Post('/create')
   @UsePipes(ValidationPipe)
   create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+    return this.userService.findByEmail('luis@email.com');
   }
 
 }
