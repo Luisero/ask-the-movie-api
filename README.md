@@ -1,5 +1,5 @@
-# Pongas Queue Api
-### An api to manage ping pong matches. 
+# Ask the movie API
+### An api to search for movies that you don't remember the name. 
 
 * ## Setup and install
     ```bash
