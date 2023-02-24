@@ -29,7 +29,7 @@ export class AuthService {
     }
 
 
-    async login(user: User): UserToken {
+     login(user: User): UserToken {
         const payload: UserPayload = {
             sub: user.user_id,
             email: user.email,
