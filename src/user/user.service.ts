@@ -29,12 +29,9 @@ export class UserService {
       where:{
         email
       }
-    })
+    });
 
-    return {
-      ...user,
-      password:undefined
-    }
+    return user;
   }
 
  
