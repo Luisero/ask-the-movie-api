@@ -42,6 +42,8 @@ model Answer {
   author    User @relation(fields: [author_id], references: [user_id])
   author_id Int
 
+  answer String 
+
   question    Question @relation(fields: [question_id], references: [question_id])
   question_id Int
 
