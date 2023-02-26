@@ -12,20 +12,41 @@ datasource db {
 
 model User {
   user_id Int @id @default(autoincrement())
-  email String @unique 
-  password String 
-  username String @unique
-  questions question[]
+
+  email     String     @unique
+  password  String
+  username  String     @unique
+  questions Question[]
+  answer    Answer[]
 
   @@map("users")
 }
 
-model question {
+model Question {
   question_id Int @id @default(autoincrement())
-  author User @relation(fields: [author_id],references: [user_id])
+
+  author    User @relation(fields: [author_id], references: [user_id])
   author_id Int
 
-  question String 
+  question String
+
+  createdAt DateTime @default(now())
+  answer    Answer[]
 
   @@map("questions")
 }
+
+model Answer {
+  answer_id Int @id @default(autoincrement())
+
+  author    User @relation(fields: [author_id], references: [user_id])
+  author_id Int
+
+  question    Question @relation(fields: [question_id], references: [question_id])
+  question_id Int
+
+  @@map("answers")
+}
+
+
+
