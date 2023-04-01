@@ -1,15 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class QuestionService {
-  create(createQuestionDto: CreateQuestionDto) {
-    return 'This action adds a new question';
+  constructor(private readonly prismaService: PrismaService) { }
+  async create(createQuestionDto: CreateQuestionDto) {
+    const data = {
+      ...createQuestionDto
+    }
+
+    const createdQuestion = await this.prismaService.question.create(
+      {
+        data
+      }
+    );
+
+    return createdQuestion;
   }
 
-  findAll() {
-    return `This action returns all question`;
+  async findAll() {
+    const questions = await this.prismaService.question.findMany();
+
+    return questions;
   }
 
   findOne(id: number) {
