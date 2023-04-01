@@ -26,8 +26,14 @@ export class QuestionService {
     return questions;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} question`;
+  async findOne(id: number) {
+    const question = await this.prismaService.question.findUnique({
+      where:{
+        question_id: id
+      }
+    })
+
+    return question;
   }
 
   update(id: number, updateQuestionDto: UpdateQuestionDto) {
